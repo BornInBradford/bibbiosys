@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@*<div class="jumbotron">
+<h1></h1>*@
+@*<p class="lead">Start by logging in, click the link top right!</p>*@
+@*<p>&nbsp;</p>
+</div>*@
+
+@if (Request.IsAuthenticated)
+{
+    <br/>
+    <div class="homeContentAuthenticated">
+        <div class="col-md-3"><a href="~/StudyPersonSample/AddStudyPerson"><span class="glyphicon glyphicon-user" /><br/><h2>Add Person</h2></a></div>                    
+        <div class="col-md-3"><a href="~/StudyPersonSample/Index"><span class="glyphicon glyphicon-barcode" /><br /><h2>Add Samples</h2></a></div>
+        <div class="col-md-6"><a title="This feature will be available in the next release"><span class="glyphicon glyphicon-th-large" /><br /><h2>Add Boxes</h2></a></div>
+    </div>
+        }
+        else
+        {
+        <div class="jumbotron">
+            <h1></h1>
+            <img src="~/Content/images//biosys_820x207.png" />
+            @*<p class="lead">Start by logging in, click the link top right!</p>*@
+            @*<p>&nbsp;</p>*@
+        </div>
+        }
+        <div class="row">
+            @if (Request.IsAuthenticated)
+            {
+
+                <div class="col-md-3">
+                    <h2>Log out</h2>
+                    <p>Log out of BioSys</p>
+                    <p>
+                        <a class="btn btn-success" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                    </p>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-3">
+                    <h2>Log In!</h2>
+                    <p>Add your credentials to access BioSys</p>
+                    <p>
+                        <a class="btn btn-success" href="~/Account/Login">Go there</a>
+                    </p>
+                </div>
+            }
+            <div class="col-md-3">
+                <h2>Biobanking</h2>
+                <p>Add Sample Information</p>
+                <p>
+                    <a class="btn btn-success" href="~/StudyPersonSample/Index">Go there</a>
+                </p>
+            </div>
+            @*<div class="col-md-3">
+                    <h2>About</h2>
+                    <p>An example page, with anonymous access.</p>
+                    <p>
+                        <a class="btn btn-success" href="~/Home/About">Go there</a>
+                    </p>
+                </div>*@
+            <div class="col-md-6">
+                <h2>Contact Us</h2>
+                <p>Who to contact if you need support</p>
+                <p> <a class="btn btn-success" href="~/Home/Contact">Get in touch</a> </p>
+            </div>
+        </div>

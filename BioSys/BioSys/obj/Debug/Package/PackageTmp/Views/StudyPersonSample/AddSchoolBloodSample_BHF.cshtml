@@ -1,0 +1,1960 @@
+﻿@model BioSys.Models.StudySamples
+
+@{
+    ViewBag.Title = "Collect & Process School Blood Sample (BHF)";
+} 
+
+<h2><span class="customViewTitle">Collect &amp; Process School Blood Sample</span></h2>
+
+@Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4></h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
+        <div class="form-group">
+            @if (ViewBag.SampleProcessing == "0")
+            {
+                <h2></h2>
+                using (Html.BeginForm("CollectSample", "StudyPersonSample", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
+                {
+                    <div id="SampleCollection">
+                        @Html.Hidden("StudyID")
+                        @Html.Hidden("ViewName")
+                        @Html.Hidden("SampleSetType", "Bloods")
+                        @Html.Hidden("SampleType", "Bloods")
+                        @Html.Hidden("SampleSetName", "BHF School Blood Sample")
+                        <table cellspacing="0" border="0">
+                            <tr>
+                                <td style="padding: 5px" align="right" valign="middle">
+                                    <span class="customTitleLineLabel">PSCID:</span>
+                                </td>
+                                <td align="left" valign="middle">
+                                    @Html.TextBox("PSCID", "", new { @id = "PSCID", @class = "textBoxAsLabel", @readonly = "readonly", maxlength = "10" })
+                                </td>
+                                <td style="padding: 5px" colspan="3" align="right" valign="middle">
+                                    <span class="customTitleLineLabel">Study ID:</span>
+                                </td>
+                                <td colspsan="4" align="left" valign="middle">
+                                    @Html.TextBox("StudyID", "", new { @id = "StudyID", @class = "textBoxAsLabel", @readonly = "readonly", maxlength = "10" })
+                                </td>
+
+                                <td style="padding: 5px" colspan="5" align="right" valign="middle">
+                                    <span class="customTitleLineLabel">Study Name:</span>
+                                </td>
+                                <td colspsan="8" align="left">
+                                    @Html.TextBox("StudyName", "", new { @id = "StudyName", @class = "textBoxAsLabel", @readonly = "readonly" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <table cellspacing="0" border="0">
+                            <tr>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="5" align="center" valign=bottom>
+                                    <br>
+                                    <b>
+                                        <font color="#000000" size="4">Sample Tubes Collected</font>
+                                    </b>
+                                </td>
+                                @*<td align="left" valign=bottom><br></td>
+                                    <td align="left" valign=bottom><br></td>
+                                    <td align="left" valign=bottom><br></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><br></td>*@  <!-- row 10 gap between two halfs of the page e.g. buccal v EDTA Tube -- add rowspan="14" to see effect-->
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="7" align="center" valign=bottom>
+                                    <br>
+                                    <b>
+                                        <font color="#000000" size="4">Date &amp; Time Collected</font>
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 height="20" align="center" valign="middle">
+                                    <b>
+                                        <font color="#000000">
+                                            Barcode Label
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan=2 align="center" valign="middle">
+                                    <b><font color="#000000">Lab Barcode</font></b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=top bgcolor="#FFFF99">
+                                    <b><font color="#000000">Gel</font></b>
+                                    <br />
+                                    @Html.CheckBoxFor(Model => Model.GelCollected, new { @id = "GelCollected", @class = "form-control" })
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=top bgcolor="#CCCCFF">
+                                    <b><font color="#000000">EDTA</font></b>
+                                    <br />
+                                    @Html.CheckBoxFor(Model => Model.EDTACollected, new { @id = "EDTACollected", @class = "form-control" })
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=top bgcolor="#E6FFCD">
+                                    <b><font color="#000000">Lit Hep</font></b>
+                                    <br />
+                                    @Html.CheckBoxFor(Model => Model.LitHepCollected, new { @id = "LitHepCollected", @class = "form-control" })
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=top bgcolor="#E7E6E6">
+                                    <b><font color="#000000">Oxalate</font></b>
+                                    <br />
+                                    @Html.CheckBoxFor(Model => Model.OxalateCollected, new { @id = "OxalateCollected", @class = "form-control" })
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1pt solid #000000" rowspan=2 align="center" valign=top bgcolor="#D7E5F7">
+                                    <b><font color="#000000">Buccal</font></b>
+                                    <br />
+                                    @Html.CheckBoxFor(Model => Model.BuccalCollected, new { @id = "BuccalCollected", @class = "form-control" })
+                                </td>
+                                <td style="border-top: 1px solid #000000;" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-top: 1px solid #000000;" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-top: 1px solid #000000;" colspan="2" align="left" valign="middle">
+                                    <font color="#000000">
+                                        <br>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="input-group">
+                                                    @Html.TextBox("DateOfCollection", "", new { @id = "DateOfCollection", @class = "form-control dateControl form_date" })
+                                                    @Html.ValidationMessageFor(model => Model.DateOfCollection, "", new { @class = "text-danger" })
+                                                    <label class="input-group-addon btn buttonFor" for="DateOfCollection">
+                                                        <span class="glyphicon glyphicon-calendar  " />
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-right: 1px solid #000000;  border-top: 1pt solid #000000" colspan="2" align="left" valign="middle">
+                                    <font color="#000000">
+                                        <br>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="input-group">
+                                                    @Html.TextBox("TimeOfCollection", "", new { @id = "TimeOfCollection", @class = "form-control timeControl form_time" })
+                                                    @Html.ValidationMessageFor(model => Model.TimeOfCollection, "", new { @class = "text-danger" })
+                                                    <label class="input-group-addon btn buttonFor" for="TimeOfCollection">
+                                                        <span class="glyphicon glyphicon-time  " />
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 rowspan=2 height="40" align="center" valign="middle">
+                                    <font color="#000000">
+                                        <br>@Html.TextBox("PSCID", "", new { @id = "PSCIDBarcode", @class = "form-control", @style = "width: 100px;  height: 20px ", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('PSCIDBarcode');" })
+                                        @Html.ValidationMessageFor(model => Model.PSCID, "", new { @class = "text-danger" })
+                                    </font>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 rowspan=2 align="center" valign="middle">
+                                    <font color="#000000">
+                                        <br>@Html.TextBox("BloodBarcode", "", new { @id = "BloodBarcode", @class = "form-control", @style = "width: 100px; height: 20px", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('BloodBarcode');" })
+                                        @Html.ValidationMessageFor(model => Model.BloodBarcode, "", new { @class = "text-danger" })
+                                    </font>
+                                </td>
+                                <td style="border-bottom: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-bottom: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-bottom: 1px solid #000000;" align="left" valign=bottom></td>
+                                <td style="border-bottom: 1px solid #000000;" align="left" valign=bottom></td>
+                                <td style="border-bottom: 1px solid #000000;" align="left" valign=bottom></td>
+                                <td style="border-right: 1px solid #000000; border-bottom: 1px solid #000000;" align="left" valign=bottom></td>
+                            </tr>
+                            <tr>
+
+                                <td style="padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=3 align="center" valign="middle">
+                                    <font color="#000000">
+                                        <br>
+                                        @Html.TextBox("GelNumber", "", new { @id = "GelNumber", @class = "form-control sampleNumBox", @onkeydown = "return (event.keyCode!=13);" })
+                                    </font>
+                                </td>
+                                <td style="padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=3 align="center" valign="middle">
+                                    <font color="#000000">
+                                        <br>
+                                        @Html.TextBox("EDTANumber", "", new { @id = "EDTANumber", @class = "form-control sampleNumBox", @onkeydown = "return (event.keyCode!=13);" })
+                                    </font>
+                                </td>
+                                <td style="padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=3 align="center" valign="middle">
+                                    <font color="#000000">
+                                        <br>
+                                        @Html.TextBox("LitHepNumber", "", new { @id = "LitHepNumber", @class = "form-control sampleNumBox", @onkeydown = "return (event.keyCode!=13);" })
+                                    </font>
+                                </td>
+                                <td style="padding-bottom: 5px; padding-left: 5px; padding-right: 5px; padding-top: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=3 align="center" valign="middle">
+                                    <font color="#000000">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    @Html.TextBox("FastingDate", "", new { @id = "FastingDate", @class = "form-control dateControl form_date" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    @Html.TextBox("FastingTime", "", new { @id = "FastingTime", @class = "form-control timeControl form_time" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </font>
+                                </td>
+                                <td style="padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; " rowspan=3 align="center" valign="middle">
+                                    <font color="#000000">
+                                        <br>
+                                        @Html.TextBox("BuccalNumber", "", new { @id = "BuccalNumber", @class = "form-control sampleNumBox" })
+                                    </font>
+                                </td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td style="border-left: 1px solid #000000; border-bottom: 1px solid #000000" align="left" valign=bottom><font color="#000000"></font></td>
+                                <td style="border-bottom: 1px solid #000000;" align="left" valign=bottom></td>
+                                <td style="border-bottom: 1px solid #000000;" align="left" valign="middle">
+                                    <b>Genetics</b>
+                                    <br />Yes:<span>@Html.RadioButtonFor(model => model.GeneticsConsent, "Yes")</span> No:<span>@Html.RadioButtonFor(model => model.GeneticsConsent, "No")</span>
+
+                                    @*@Html.CheckBoxFor(Model => Model.ConsentGenetics, new { @id = "LitHepCollectedCheckBox", @class = "form-control" })*@
+                                    @*@Html.EnumDropDownListFor(model => model.YesNo, new { @id = "GeneticsConsent", @class = "enumControl" })*@
+
+                                </td>
+                                <td style="border-bottom: 1px solid #000000;" align="left" valign="middle">
+                                    <b>Non-genetics</b>
+                                    <br />Yes:<span>@Html.RadioButtonFor(model => model.NonGeneticsConsent, "Yes")</span> No:<span>@Html.RadioButtonFor(model => model.NonGeneticsConsent, "No")</span>
+
+                                    @*@Html.CheckBoxFor(Model => Model.ConsentNonGenetic, new { @id = "LitHepCollectedCheckBox", @class = "form-control" })*@
+                                    @*@Html.EnumDropDownListFor(model => model.YesNo, new { @id = "NonGeneticsConsent", @class = "enumControl" })*@
+                                </td>
+                                <td style="border-bottom: 1px solid #000000" align="left" valign="middle">
+                                    <b>Renal Study</b>
+                                    <br />Yes:<span>@Html.RadioButtonFor(model => model.RenalStudyConsent, "Yes")</span> No:<span>@Html.RadioButtonFor(model => model.RenalStudyConsent, "No")</span>
+
+                                    @*@Html.CheckBoxFor(Model => Model.ConsentRenalStudy, new { @id = "LitHepCollectedCheckBox", @class = "form-control" })*@
+                                    @*@Html.EnumDropDownListFor(model => model.YesNo, new { @id = "RenalStudyConsent", @class = "enumControl" })*@
+                                </td>
+                                <td style="padding: 10px; border-right: 1px solid #000000;  border-bottom: 1px solid #000000" align="right" valign="middle">
+                                    <a href="StudyPersonSample/CollectSample">
+                                        <input type="submit" value="Save Collect Sample" class="btn btn-success" />
+                                    </a>                                                                                                    <!-- COLLECTED BUTTON -->
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                } @* END OF IF CONDITION FOR SAMPLE COLLECTION *@
+            }
+
+            @* MOOT END POINT OF SAMPLE COLLECTION*@
+            <br />
+            <h2><span class="text-danger">@Html.Raw(@ViewBag.Message)</span></h2>
+            <h2>@Html.ValidationSummary(false, "", new { @class = "text-danger" })</h2>
+
+            @* MOOT START POINT OF SAMPLE PROCESSING*@
+            @if (ViewBag.SampleProcessing == "1")
+            {
+
+                using (Html.BeginForm("ProcessSample", "StudyPersonSample", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
+                {
+
+                    <div id="SampleProcessing">
+                        @Html.Hidden("PSCID")
+                        @Html.Hidden("StudyID")
+                        @*@Html.Hidden("SampleID")*@
+                        @Html.Hidden("BloodsProcessed", 1)
+                        @Html.Hidden("EDTASampleID")
+                        @Html.Hidden("GelSampleID")
+                        @Html.Hidden("LitHepSampleID")
+                        @Html.Hidden("OxalateSampleID")
+                        @Html.Hidden("BuccalSampleID")
+                        @Html.Hidden("ViewName")
+                        @Html.Hidden("SampleSetType", "Bloods")
+                        @Html.Hidden("EDTAProcessed")
+                        @Html.Hidden("GelSerumProcessed")
+                        @Html.Hidden("LitHepProcessed")
+                        @Html.Hidden("OxalateProcessed")
+                        @Html.Hidden("BuccalProcessed")
+                        @Html.Hidden("SampleSetName", "BHF School Blood Sample")
+                        @*@Html.Hidden("AliquotCount", 5)*@
+                        @Html.Hidden("EDTAAliquotCount", 3)
+                        @Html.Hidden("GelSerumAliquotCount", 4)
+                        @Html.Hidden("OxalatePlasmaAliquotCount", 4)
+                        @Html.Hidden("LitHepPlasmaAliquotCount", 4)
+                        <table>
+                            <tr>
+                                <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="padding-left: 5px; padding-right: 5px; border-top: 1px solid #000000; border-left: 1px solid #000000;" align="center" valign="middle">
+                                    <font color="#000000">
+                                        <b>
+                                            Freezer
+                                        </b>
+                                    </font>
+                                </td>
+                                <td style="padding-left: 5px; padding-right: 5px; border-top: 1px solid #000000; border-left: 1px solid #000000;" align="center" valign="middle">
+                                    <font color="#000000">
+                                        <b>
+                                            Rack
+                                        </b>
+                                    </font>
+                                </td>
+                                <td style="padding-left: 5px; padding-right: 5px; border-top: 1px solid #000000; border-left: 1px solid #000000;" align="center" valign="middle">
+                                    <font color="#000000">
+                                        <b>
+                                            Drawer
+                                        </b>
+                                    </font>
+                                </td>
+                                <td style="padding-left: 5px; padding-right: 5px; border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        <b>
+                                            Box
+                                        </b>
+                                    </font>
+                                </td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td> @* 3 td tags added*@
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                     <td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" rowspan=1 align="center" valign=top bgcolor="#CCCCFF">
+                                        <b>
+                                            <font color="#000000">
+                                                EDTA
+                                            </font>
+                                        </b>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=top>
+                                        <b>
+                                            <font color="#000000">
+                                                WB
+                                            </font>
+                                        </b>
+                                    </td>*@
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ align="center" valign=bottom>
+                                    <b>
+                                        <font color="#000000">Tube:</font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom>
+                                    <b>
+                                        <font color="#000000">Sample Type</font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom>
+                                    <b>
+                                        <font color="#000000">Aliquot 1</font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom>
+                                    <b>
+                                        <font color="#000000">Aliquot 2</font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom>
+                                    <b>
+                                        <font color="#000000">Aliquot 3</font>
+                                    </b>
+                                </td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font>Go 6</td>*@
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+
+                            </tr>
+                            @*<font size=1 color="#000000">
+                                    @Html.TextBox("WBFreezer", "", new { @id = "WBFreezer", @class = "fbBox", placeholder = "(F)" })/   WB ALIQUOT BOX STORAGE LOCATIONS
+                                    @Html.TextBox("WBRack", "", new { @id = "WBRack", @class = "rdBox", placeholder = "(R)" })/
+                                    @Html.TextBox("WBDrawer", "", new { @id = "WBDrawer", @class = "rdBox", placeholder = "(D)" })/
+                                    @Html.TextBox("WBBox", "", new { @id = "WBBox", @class = "boxBox", placeholder = "(B)" })
+                                </font></td>*@
+                            <tr>
+                                <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="padding-left: 5px; padding-right: 5px; border-top: 1px solid #000000; border-left: 1px solid #000000; border-bottom: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @Html.TextBox("Freezer", "", new { @id = "Freezer", @class = "fbBox", placeholder = "(F)" })
+                                        @Html.ValidationMessageFor(model => Model.Freezer, "", new { @class = "text-danger" })
+                                    </font>
+                                </td>
+                                <td style="padding-left: 5px; padding-right: 5px; border-top: 1px solid #000000; border-left: 1px solid #000000; border-bottom: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @Html.TextBox("Rack", "", new { @id = "Rack", @class = "fbBox", placeholder = "(R)" })
+                                        @Html.ValidationMessageFor(model => Model.Rack, "", new { @class = "text-danger" })
+                                    </font>
+                                </td>
+                                <td style="padding-left: 5px; padding-right: 5px; border-top: 1px solid #000000; border-left: 1px solid #000000; border-bottom: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @Html.TextBox("Drawer", "", new { @id = "Drawer", @class = "fbBox", placeholder = "(D)" })
+                                        @Html.ValidationMessageFor(model => Model.Drawer, "", new { @class = "text-danger" })
+                                    </font>
+                                </td>
+                                <td style="padding-left: 5px; padding-right: 5px; border-top: 1px solid #000000; border-left: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @Html.TextBox("Box", "", new { @id = "Box", @class = "boxBox", placeholder = "(B)" })
+                                        @Html.ValidationMessageFor(model => Model.Box, "", new { @class = "text-danger" })
+                                    </font>
+                                </td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                     <td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ rowspan=3 align="center" valign=top bgcolor="#CCCCFF">
+                                    <b>
+                                        <font color="#000000">
+                                            EDTA
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan="3" align="center" valign=top>
+                                    <b>
+                                        <font color="#000000">
+                                            WB
+                                        </font>
+                                    </b>
+                                </td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td style="border-right: 1px solid #000000;" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-right: 1px solid #000000;" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-right: 1px solid #000000;" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td style="padding: 5px; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                        <font color="#000000">
+                                            @Html.TextBox("WBAliquot1", "", new { @id = "WBAliquot1", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);" })
+                                        </font>
+                                    </td>
+                                    <td style="padding: 5px; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                        <font color="#000000">
+                                           @Html.TextBox("WBAliquot2", "", new { @id = "WBAliquot2", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);" })
+                                        </font>
+                                    </td>
+                                    <td style="padding: 5px; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                        <font color="#000000">
+                                            @Html.TextBox("WBAliquot3", "", new { @id = "WBAliquot3", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);" })
+                                        </font>
+                                    </td>*@
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font>Go 6</td>*@
+                            </tr>
+                            <tr>
+                                <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td style="padding: 5px; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("WBAliquot1", "", new { @id = "WBAliquot1", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('WBAliquot1');" })
+                                            @Html.ValidationMessageFor(model => Model.WBAliquot1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("WBAliquot2", "", new { @id = "WBAliquot2", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('WBAliquot2');" })
+                                            @Html.ValidationMessageFor(model => Model.WBAliquot2, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("WBAliquot3", "", new { @id = "WBAliquot3", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('WBAliquot3');" })
+                                            @Html.ValidationMessageFor(model => Model.WBAliquot3, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-left: 1pt solid #000000; border-top: 1pt solid #000000; border-right: 1pt solid #000000" align="center" colspan="4" valign="top"><b><font color="#000000"><br>Grossly Haemolysed</font></b></td>
+                                @*<td style="border-top: 1pt solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-top: 1pt solid #000000;" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-top: 1pt solid #000000; border-right: 1pt solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                     <td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td style="border-right: 1pt solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-right: 1pt solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-right: 1pt solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font>Go 6</td>*@
+                            </tr>
+                            @*<tr>
+                                    <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font>7</td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font>8</td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font>9</td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font>10</td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font>11</td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font>12</td>
+                                    <td style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br>Howdy2!</font></td>
+                                    <td style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br>Howdy2!</font></td>
+                                    <td style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br>Howdy2!</font></td>
+                                    <td style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br>Howdy2!</font></td>
+                                </tr>*@
+                            <tr>
+                                <td height="23" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="padding: 5px; border-left: 1pt solid #000000; border-top: 1pt solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        EDTA: @Html.CheckBoxFor(Model => Model.EDTAGrosslyHaemolysed, new { @id = "EDTAGrosslyHaemolysed", @class = "form-control" })
+                                    </font>
+                                </td>
+                                <td style="border-left: 1pt solid #000000; border-top: 1pt solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        Gel: @Html.CheckBoxFor(Model => Model.GelGrosslyHaemolysed, new { @id = "GelGrosslyHaemolysed", @class = "form-control" })
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-left: 1pt solid #000000; border-top: 1pt solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        Ox: @Html.CheckBoxFor(Model => Model.OxalateGrosslyHaemolysed, new { @id = "OxalateGrosslyHaemolysed", @class = "form-control" })
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-left: 1pt solid #000000; border-right: 1pt solid #000000; border-top: 1pt solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        Lt Hep: @Html.CheckBoxFor(Model => Model.LitHepGrosslyHaemolysed, new { @id = "LitHepGrosslyHaemolysed", @class = "form-control" })
+                                    </font>
+                                </td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td style="border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ align="center" valign="bottom">
+                                    <b>
+                                        <font size=1 color="#000000">
+                                            Insufficient
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top>
+                                    <b>
+                                        <font size=1 color="#000000">
+                                            <!-- EDTA POSITION DATA -->
+                                            Position:
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("WBAliquotPosition1", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.WBAliquotPosition1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("WBAliquotPosition2", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.WBAliquotPosition2, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("WBAliquotPosition3", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.WBAliquotPosition3, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ height="20" align="center" valign=bottom>
+                                    <b>
+                                        <font color="#000000">
+                                            <!-- TOP OF LEFT HAND TABLE - STARTING WITH GEL SAMPLE ALIQUOTS -->
+                                            Tube:
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom>
+                                    <b>
+                                        <font color="#000000">Sample Type:</font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom>
+                                    <b>
+                                        <font color="#000000">Aliquot 1</font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom>
+                                    <b>
+                                        <font color="#000000">Aliquot 2</font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom>
+                                    <b>
+                                        <font color="#000000">Aliquot 3</font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom>
+                                    <b>
+                                        <font color="#000000">Aliquot 4</font>
+                                    </b>
+                                </td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td style="padding-left: 50px; border-top: 1px solid #000000; border-bottom: 1px solid #000000" align="center" valign="middle">*@
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000" align="center" valign="middle">
+                                    <b>
+                                        <font color="#000000">
+                                            @* Consent*@
+                                        </font>
+                                    </b>
+                                </td>
+                                @*<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ align="left" valign=top>
+                                    @* second colspan change*@
+                                    <!-- WB BOX STORAGE AND VOLUME -->
+                                    <font size=1 color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.CheckBoxFor(Model => Model.EDTAInsufficient, new { @id = "EDTAInsufficient", @class = "form-control" })
+                                        }
+                                        @*@Html.TextBox("WBFreezer", "", new { @id = "WBFreezer", @class = "fbBox", placeholder = "(F)" })/   WB ALIQUOT BOX STORAGE LOCATIONS
+                                            @Html.TextBox("WBRack", "", new { @id = "WBRack", @class = "rdBox", placeholder = "(R)" })/
+                                            @Html.TextBox("WBDrawer", "", new { @id = "WBDrawer", @class = "rdBox", placeholder = "(D)" })/
+                                            @Html.TextBox("WBBox", "", new { @id = "WBBox", @class = "boxBox", placeholder = "(B)" })*@
+                                    </font>
+                                </td>
+                                <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top>
+                                    <b>
+                                        <font size=1 color="#000000">
+                                            <!-- WB VOLUME -->
+                                            Volume:
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("WBAliquotVol1", "", new { @id = "WBAliquotVol1", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.WBAliquotVol1, "", new { @class = "text-danger" })
+
+                                        }
+                                    </font>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("WBAliquotVol2", "", new { @id = "WBAliquotVol2", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.WBAliquotVol2, "", new { @class = "text-danger" })
+
+                                        }*@
+                                    </font>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("WBAliquotVol3", "", new { @id = "WBAliquotVol3", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.WBAliquotVol3, "", new { @class = "text-danger" })
+
+                                        }*@
+                                    </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ rowspan=2 height="93" align="center" valign=top bgcolor="#FFFF99">
+                                    <b>
+                                        <font color="#000000">
+                                            Gel
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=top>
+                                    <b><font color="#000000">Serum</font></b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.GelSerumProcessed == 1)
+                                        {
+                                            @Html.TextBox("SerumAliquot1", "", new { @id = "SerumAliquot1", @class = "form-control barCodeBox inputs", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('SerumAliquot1');" })
+                                            @Html.ValidationMessageFor(model => Model.SerumAliquot1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=middle>
+                                    <font color="#000000">
+                                        @if (ViewBag.GelSerumProcessed == 1)
+                                        {
+                                            @Html.TextBox("SerumAliquot2", "", new { @id = "SerumAliquot2", @class = "form-control  barCodeBox", @oninput = "validate();", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('SerumAliquot2');" })
+                                            @Html.ValidationMessageFor(model => Model.SerumAliquot2, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=middle>
+                                    <font color="#000000">
+                                        @if (ViewBag.GelSerumProcessed == 1)
+                                        {
+                                            @Html.TextBox("SerumAliquot3", "", new { @id = "SerumAliquot3", @class = "form-control  barCodeBox", @oninput = "validate();", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('SerumAliquot3');" })
+                                            @Html.ValidationMessageFor(model => Model.SerumAliquot3, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=middle>
+                                    <font color="#000000">
+                                        @if (ViewBag.GelSerumProcessed == 1)
+                                        {
+                                            @Html.TextBox("SerumAliquot4", "", new { @id = "SerumAliquot4", @class = "form-control  barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('SerumAliquot4');" })
+                                            @Html.ValidationMessageFor(model => Model.SerumAliquot4, "", new { @class = "text-danger" })
+
+                                        }
+                                    </font>
+                                </td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td style="padding-top: 10px; padding-bottom: 10px; padding-left: 50px" align="center" valign="middle">*@
+                                <td style="padding: 5px;" align="center" valign="middle">
+                                    <b>
+                                        @*Genetics: @Html.EnumDropDownListFor(model => model.YesNo, new { @id = "ddlConsentGeneticsYN", @class = "enumControl" })  uses public class YesNo for ConsentGentics enum - i.e. consentOverconfiguration - see StudyPersonSample.cs model*@
+                                    </b>
+                                </td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td align="left" valign=bottom><font color="#000000"></font></td>*@
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ rowspan=2 align="center" valign=top><font color="#000000"><br></font></td> @* second colspan change*@
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=top>
+                                    <b>
+                                        <font color="#000000">Plasma</font>
+                                    </b>
+                                </td>
+                                <td style="padding:5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("EDTAPlasmaAliquot1", "", new { @id = "EDTAPlasmaAliquot1", @class = "form-control barCodeBox", @onkeydown = "return(event.keyCode!=13);", @onclick = "clearBarcodeField('EDTAPlasmaAliquot1');" })
+                                            @Html.ValidationMessageFor(model => Model.EDTAPlasmaAliquot1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding:5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("EDTAPlasmaAliquot2", "", new { @id = "EDTAPlasmaAliquot2", @class = "form-control barCodeBox", @onkeydown = "return(event.keyCode!=13);", @onclick = "clearBarcodeField('EDTAPlasmaAliquot2');" })
+                                            @Html.ValidationMessageFor(model => Model.EDTAPlasmaAliquot2, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding:5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("EDTAPlasmaAliquot3", "", new { @id = "EDTAPlasmaAliquot3", @class = "form-control barCodeBox", @onkeydown = "return(event.keyCode!=13);", @onclick = "clearBarcodeField('EDTAPlasmaAliquot3');" })
+                                            @Html.ValidationMessageFor(model => Model.EDTAPlasmaAliquot3, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                            </tr>
+                            @*<tr>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                </tr>*@
+                            <tr>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td style="padding-top: 10px; padding-left: 50px" align="center" valign="middle">*@
+                                <td style="padding: 5px" align="center" valign="middle">
+                                    <b>
+                                        <font color="#000000">
+                                            @*Non-genetic: @Html.EnumDropDownListFor(model => model.YesNo, new { @id = "ddlConsentNonGeneticYN", @class = "enumControl" })*@ <!-- i.e. uses the same enum class as ConsentGenetics-->
+                                        </font>
+                                    </b>
+                                </td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                            </tr>
+                            @*<tr>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                </tr>*@
+                            <tr>
+                                <td style="border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" @*colspan="3"*@ align="center" valign="bottom">
+                                    <b>
+                                        <font size=1 color="#000000">
+                                            Insufficient
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top>
+                                    <b>
+                                        <font size=1 color="#000000">
+                                            Position:
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.GelSerumProcessed == 1)
+                                        {
+                                            @Html.TextBox("SerumAliquotPosition1", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.SerumAliquotPosition1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.GelSerumProcessed == 1)
+                                        {
+                                            @Html.TextBox("SerumAliquotPosition2", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.SerumAliquotPosition2, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.GelSerumProcessed == 1)
+                                        {
+                                            @Html.TextBox("SerumAliquotPosition3", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.SerumAliquotPosition3, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.GelSerumProcessed == 1)
+                                        {
+                                            @Html.TextBox("SerumAliquotPosition4", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.SerumAliquotPosition4, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ align="center" valign=top>
+                                    @* second colspan change*@
+                                    @*<b>
+                                            <font size=1 color="#000000">
+                                               Insufficient
+                                            </font>
+                                        </b>*@
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top>
+                                    <b>
+                                        <font size=1 color="#000000">
+                                            Position:
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("EDTAPlasmaAliquotPosition1", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.EDTAPlasmaAliquotPosition1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("EDTAPlasmaAliquotPosition2", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.EDTAPlasmaAliquotPosition2, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("EDTAPlasmaAliquotPosition3", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.EDTAPlasmaAliquotPosition3, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ height="20" align="center" valign=top>
+                                    <font size=1 color="#000000">
+                                        @if (ViewBag.GelSerumProcessed == 1)
+                                        {
+                                            @Html.CheckBoxFor(Model => Model.GelInsufficient, new { @id = "GelInsufficient", @class = "form-control" })
+                                        }
+
+                                        @*@Html.TextBox("SerumAliquotFreezer", "", new { @id = "SerumAliquotFreezer", @class = "rdBox", placeholder = "(F)" })/
+                                            @Html.TextBox("SerumAliquotRack", "", new { @id = "SerumAliquotRack", @class = "rdBox", placeholder = "(R)" })/
+                                            @Html.TextBox("SerumAliquotDrawer", "", new { @id = "SerumAliquotDrawer", @class = "rdBox", placeholder = "(D)" })/
+                                            @Html.TextBox("SerumAliquotBox", "", new { @id = "SerumAliquotBox", @class = "boxBox", placeholder = "(B)" })*@
+                                    </font>
+                                </td>
+                                <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top>
+                                    <b>
+                                        <font size=1 color="#000000">
+                                            Volume:
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.GelSerumProcessed == 1)
+                                        {
+                                            @Html.TextBox("SerumAliquotVol1", "", new { @id = "SerumAliquotVol1", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.SerumAliquotVol1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.GelSerumProcessed == 1)
+                                        {
+                                            @Html.TextBox("SerumAliquotVol2", "", new { @id = "SerumAliquotVol2", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.SerumAliquotVol2, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.GelSerumProcessed == 1)
+                                        {
+                                            @Html.TextBox("SerumAliquotVol3", "", new { @id = "SerumAliquotVol3", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.SerumAliquotVol3, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.GelSerumProcessed == 1)
+                                        {
+                                            @Html.TextBox("SerumAliquotVol4", "", new { @id = "SerumAliquotVol4", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.SerumAliquotVol4, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td align="left" valign=bottom><font color="#000000"></font></td>
+                                @*<td align="left" valign=bottom><font color="#000000"></font></td>*@
+                                @*<td align="left" valign=bottom><font color="#000000"></font></td>*@
+                                @*<td align="left" valign=bottom><font color="#000000"></font></td>*@
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ align="center" valign=top>
+                                    @* second colspan change*@
+                                    @*<font size=1 color="#000000">
+                                            @Html.TextBox("EDTAPlasmaFreezer", "", new { @id = "EDTAPlasmaFreezer", @class = "rdBox", placeholder = "(F)" })/
+                                            @Html.TextBox("EDTAPlasmaRack", "", new { @id = "EDTAPlasmaRack", @class = "rdBox", placeholder = "(R)" })/
+                                            @Html.TextBox("EDTAPlasmaDrawer", "", new { @id = "EDTAPlasmaDrawer", @class = "rdBox", placeholder = "(D)" })/
+                                            @Html.TextBox("EDTAPlasmaBox", "", new { @id = "EDTAPlasmaBox", @class = "boxBox", placeholder = "(B)" })
+                                        </font>*@
+                                </td>
+                                <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top>
+                                    <b>
+                                        <font size=1 color="#000000">
+                                            Volume:
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("EDTAPlasmaAliquotVol1", "", new { @id = "EDTAPlasmaAliquotVol1", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.EDTAPlasmaAliquotVol1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("EDTAPlasmaAliquotVol2", "", new { @id = "EDTAPlasmaAliquotVol2", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.EDTAPlasmaAliquotVol2, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("EDTAPlasmaAliquotVol3", "", new { @id = "EDTAPlasmaAliquotVol3", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.EDTAPlasmaAliquotVol3, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ rowspan=4 height="107" align="center" valign=top bgcolor="#E7E6E6">
+                                    <b>
+                                        <font color="#000000">
+                                            Oxalate
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top>
+                                    <b>
+                                        <font color="#000000">
+                                            Plasma
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.OxalateProcessed == 1)
+                                        {
+                                            @Html.TextBox("OxalatePlasmaAliquot1", "", new { @id = "OxalatePlasmaAliquot1", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('OxalatePlasmaAliquot1');" })
+                                            @Html.ValidationMessageFor(model => Model.OxalatePlasmaAliquot1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=middle>
+                                    <font color="#000000">
+                                        @if (ViewBag.OxalateProcessed == 1)
+                                        {
+                                            @Html.TextBox("OxalatePlasmaAliquot2", "", new { @id = "OxalatePlasmaAliquot2", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('OxalatePlasmaAliquot2');" })
+                                            @Html.ValidationMessageFor(model => Model.OxalatePlasmaAliquot2, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=middle>
+                                    <font color="#000000">
+                                        @if (ViewBag.OxalateProcessed == 1)
+                                        {
+                                            @Html.TextBox("OxalatePlasmaAliquot3", "", new { @id = "OxalatePlasmaAliquot3", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('OxalatePlasmaAliquot3');" })
+                                            @Html.ValidationMessageFor(model => Model.OxalatePlasmaAliquot3, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=middle>
+                                    <font color="#000000">
+                                        @if (ViewBag.OxalateProcessed == 1)
+                                        {
+                                            @Html.TextBox("OxalatePlasmaAliquot4", "", new { @id = "OxalatePlasmaAliquot4", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('OxalatePlasmaAliquot4');" })
+                                            @Html.ValidationMessageFor(model => Model.OxalatePlasmaAliquot4, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td style="padding-left: 50px" align="center" valign="middle">*@
+                                <td style="padding: 5px" align="center" valign="middle">
+                                    @*<b>
+                                            <font color="#000000">
+                                                Renal Study: @Html.EnumDropDownListFor(model => model.YesNo, new { @id = "ddlRenalStudyYN", @class = "enumControl" })
+                                            </font>
+                                        </b>*@
+                                </td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ rowspan=4 align="center" valign=top><font color="#000000"><br></font></td> @* second colspan change*@
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top>
+                                    <b>
+                                        <font color="#000000">
+                                            Buffy
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("BuffyAliquot1", "", new { @id = "BuffyAliquot1", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('BuffyAliquot1');" })
+                                            @Html.ValidationMessageFor(model => Model.BuffyAliquot1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("BuffyAliquot2", "", new { @id = "BuffyAliquot2", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('BuffyAliquot2');" })
+                                            @Html.ValidationMessageFor(model => Model.BuffyAliquot2, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("BuffyAliquot3", "", new { @id = "BuffyAliquot3", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('BuffyAliquot3');" })
+                                            @Html.ValidationMessageFor(model => Model.BuffyAliquot3, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                            </tr>
+                            <tr>
+                                <td style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="20" @*colspan="3"*@ align="center" valign="bottom">
+                                    <b>
+                                        <font size=1 color="#000000">
+                                            Insufficient
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top>
+                                    <b>
+                                        <font size=1 color="#000000">
+                                            Position:
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.OxalateProcessed == 1)
+                                        {
+                                            @Html.TextBox("OxalatePlasmaAliquotPosition1", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.OxalatePlasmaAliquotPosition1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.OxalateProcessed == 1)
+                                        {
+                                            @Html.TextBox("OxalatePlasmaAliquotPosition2", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.OxalatePlasmaAliquotPosition2, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.OxalateProcessed == 1)
+                                        {
+                                            @Html.TextBox("OxalatePlasmaAliquotPosition3", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.OxalatePlasmaAliquotPosition3, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.OxalateProcessed == 1)
+                                        {
+                                            @Html.TextBox("OxalatePlasmaAliquotPosition4", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.OxalatePlasmaAliquotPosition4, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ align="center" valign=top>
+                                    @* second colspan change*@
+                                    @*<b>
+                                            <font size=1 color="#000000">
+                                            Insufficient
+                                            </font>
+                                        </b>*@
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top>
+                                    <b>
+                                        <font size=1 color="#000000">
+                                            Position:
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("BuffyAliquotPosition1", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.BuffyAliquotPosition1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("BuffyAliquotPosition2", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.BuffyAliquotPosition2, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("BuffyAliquotPosition3", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.BuffyAliquotPosition3, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="20" @*colspan="3"*@ align="center" valign=top>
+                                    <font size=1 color="#000000">
+                                        @if (ViewBag.OxalateProcessed == 1)
+                                        {
+                                            @Html.CheckBoxFor(Model => Model.OxalateInsufficient, new { @id = "OxalateInsufficient", @class = "form-control" })
+                                            @*@Html.TextBox("OxalatePlasmaFreezer", "", new { @id = "OxalatePlasmaFreezer", @class = "rdBox", placeholder = "(F)" })/
+                                                @Html.TextBox("OxalatePlasmaRack", "", new { @id = "OxalatePlasmaRack", @class = "rdBox", placeholder = "(R)" })/
+                                                @Html.TextBox("OxalatePlasmaDrawer", "", new { @id = "OxalatePlasmaDrawer", @class = "rdBox", placeholder = "(D)" })/
+                                                @Html.TextBox("OxalatePlasmaBox", "", new { @id = "OxalatePlasmaBox", @class = "boxBox", placeholder = "(B)" })*@
+                                        }
+                                    </font>
+                                </td>
+                                <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top>
+                                    <b>
+                                        <font size=1 color="#000000">
+                                            Volume:
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.OxalateProcessed == 1)
+                                        {
+                                            @Html.TextBox("OxalatePlasmaAliquotVol1", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.OxalatePlasmaAliquotVol1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.OxalateProcessed == 1)
+                                        {
+                                            @Html.TextBox("OxalatePlasmaAliquotVol2", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.OxalatePlasmaAliquotVol2, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.OxalateProcessed == 1)
+                                        {
+                                            @Html.TextBox("OxalatePlasmaAliquotVol3", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.OxalatePlasmaAliquotVol3, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.OxalateProcessed == 1)
+                                        {
+                                            @Html.TextBox("OxalatePlasmaAliquotVol4", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.OxalatePlasmaAliquotVol4, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ align="center" valign=top>
+                                    @* second colspan change*@
+                                    @*<font size=1 color="#000000">
+                                            @Html.TextBox("BuffyFreezer", "", new { @id = "BuffyFreezer", @class = "rdBox", placeholder = "(F)" })/
+                                            @Html.TextBox("BuffyRack", "", new { @id = "BuffyRack", @class = "rdBox", placeholder = "(R)" })/
+                                            @Html.TextBox("BuffyDrawer", "", new { @id = "BuffyDrawer", @class = "rdBox", placeholder = "(D)" })/
+                                            @Html.TextBox("BuffyBox", "", new { @id = "BuffyBox", @class = "boxBox", placeholder = "(B)" })
+                                        </font>*@
+                                </td>
+                                <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top>
+                                    <b>
+                                        <font size=1 color="#000000">
+                                            Volume
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("BuffyAliquotVol1", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.BuffyAliquotVol1, "", new { @class = "text-danger" })
+                                        }
+
+                                    </font>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("BuffyAliquotVol2", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.BuffyAliquotVol2, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("BuffyAliquotVol3", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.BuffyAliquotVol3, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ rowspan=4 height="120" align="center" valign=top bgcolor="#E6FFCD">
+                                    <b>
+                                        <font color="#000000">Lit Hep</font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top>
+                                    <b>
+                                        <font color="#000000">Plasma</font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.LitHepProcessed == 1)
+                                        {
+                                            @Html.TextBox("LitHepPlasmaAliquot1", "", new { @id = "LitHepPlasmaAliquot1", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('LitHepPlasmaAliquot1');" })
+                                            @Html.ValidationMessageFor(model => Model.LitHepPlasmaAliquot1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.LitHepProcessed == 1)
+                                        {
+                                            @Html.TextBox("LitHepPlasmaAliquot2", "", new { @id = "LitHepPlasmaAliquot2", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('LitHepPlasmaAliquot2');" })
+                                            @Html.ValidationMessageFor(model => Model.LitHepPlasmaAliquot2, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.LitHepProcessed == 1)
+                                        {
+                                            @Html.TextBox("LitHepPlasmaAliquot3", "", new { @id = "LitHepPlasmaAliquot3", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('LitHepPlasmaAliquot3');" })
+                                            @Html.ValidationMessageFor(model => Model.LitHepPlasmaAliquot3, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.LitHepProcessed == 1)
+                                        {
+                                            @Html.TextBox("LitHepPlasmaAliquot4", "", new { @id = "LitHepPlasmaAliquot4", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('LitHepPlasmaAliquot4');" })
+                                            @Html.ValidationMessageFor(model => Model.LitHepPlasmaAliquot4, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ rowspan=4 align="center" valign=top><font color="#000000"><br></font></td> <!-- column 11--> @* second colspan change*@
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top>
+                                    <b>
+                                        <font color="#000000">RBC</font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("RBCAliquot1", "", new { @id = "RBCAliquot1", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('RBCAliquot1');" })
+                                            @Html.ValidationMessageFor(model => Model.RBCAliquot1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("RBCAliquot2", "", new { @id = "RBCAliquot2", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('RBCAliquot2');" })
+                                            @Html.ValidationMessageFor(model => Model.RBCAliquot2, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("RBCAliquot3", "", new { @id = "RBCAliquot3", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('RBCAliquot3');" })
+                                            @Html.ValidationMessageFor(model => Model.RBCAliquot3, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td> <!-- column 17 -->
+                            </tr>
+                            <tr>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                            </tr>
+                            <tr>
+                                <td style="border-left: 1px solid #000000; border-right: 1px solid #000000" height="20" @*colspan="3"*@ align="center" valign="bottom">
+                                    <b>
+                                        <font size=1 color="#000000">
+                                            Insufficient
+                                        </font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top>
+                                    <b>
+                                        <font size=1 color="#000000">Position:</font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.LitHepProcessed == 1)
+                                        {
+                                            @Html.TextBox("LitHepPlasmaAliquotPosition1", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.LitHepPlasmaAliquotPosition1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.LitHepProcessed == 1)
+                                        {
+                                            @Html.TextBox("LitHepPlasmaAliquotPosition2", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.LitHepPlasmaAliquotPosition2, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.LitHepProcessed == 1)
+                                        {
+                                            @Html.TextBox("LitHepPlasmaAliquotPosition3", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.LitHepPlasmaAliquotPosition3, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.LitHepProcessed == 1)
+                                        {
+                                            @Html.TextBox("LitHepPlasmaAliquotPosition4", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.LitHepPlasmaAliquotPosition4, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ align="center" valign=top>
+                                    <!-- column 11--> @* second colspan change*@
+                                    @*<b>
+                                            <font size=1 color="#000000">F/R/D/B</font>
+                                        </b>*@
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top>
+                                    <b>
+                                        <font size=1 color="#000000">Position:</font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("RBCAliquotPosition1", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.RBCAliquotPosition1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("RBCAliquotPosition2", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.RBCAliquotPosition2, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("RBCAliquotPosition3", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.RBCAliquotPosition3, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="20" @*colspan="3*@ align="center" valign=top>
+                                    <font size=1 color="#000000">
+                                        @if (ViewBag.LitHepProcessed == 1)
+                                        {
+                                            @Html.CheckBoxFor(Model => Model.LitHepInsufficient, new { @id = "LitHepInsufficient", @class = "form-control" })
+
+                                        }
+                                        @*@Html.TextBox("LitHepPlasmaFreezer", "", new { @id = "LitHepPlasmaFreezer", @class = "rdBox", placeholder = "(F)" })/
+                                            @Html.TextBox("LitHepPlasmaRack", "", new { @id = "LitHepPlasmaRack", @class = "rdBox", placeholder = "(R)" })/
+                                            @Html.TextBox("LitHepPlasmaDrawer", "", new { @id = "LitHepPlasmaDrawer", @class = "rdBox", placeholder = "(D)" })/
+                                            @Html.TextBox("LitHepPlasmaBox", "", new { @id = "LitHepPlasmaBox", @class = "boxBox", placeholder = "(B)" })*@
+                                    </font>
+                                </td>
+                                <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top>
+                                    <b>
+                                        <font size=1 color="#000000">Volume:</font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.LitHepProcessed == 1)
+                                        {
+                                            @Html.TextBox("LitHepPlasmaAliquotVol1", "", new { @id = "LitHepPlasmaAliquotVol1", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.LitHepPlasmaAliquotVol1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.LitHepProcessed == 1)
+                                        {
+                                            @Html.TextBox("LitHepPlasmaAliquotVol2", "", new { @id = "LitHepPlasmaAliquotVol2", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.LitHepPlasmaAliquotVol2, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.LitHepProcessed == 1)
+                                        {
+                                            @Html.TextBox("LitHepPlasmaAliquotVol3", "", new { @id = "LitHepPlasmaAliquotVol3", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.LitHepPlasmaAliquotVol3, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.LitHepProcessed == 1)
+                                        {
+                                            @Html.TextBox("LitHepPlasmaAliquotVol4", "", new { @id = "LitHepPlasmaAliquotVol4", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.LitHepPlasmaAliquotVol4, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @* <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                    <td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ align="center" valign=top>
+                                    <!-- column 11--> @* second colspan change*@
+                                    @*<font size=1 color="#000000">
+                                            @Html.TextBox("RBCFreezer", "", new { @id = "RBCFreezer", @class = "rdBox", placeholder = "(F)" })/
+                                            @Html.TextBox("RBCRack", "", new { @id = "RBCRack", @class = "rdBox", placeholder = "(R)" })/
+                                            @Html.TextBox("RBCDrawer", "", new { @id = "RBCDrawer", @class = "rdBox", placeholder = "(D)" })/
+                                            @Html.TextBox("RBCBox", "", new { @id = "RBCBox", @class = "boxBox", placeholder = "(B)" })
+                                        </font>*@
+                                </td>
+                                <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top>
+                                    <b>
+                                        <font size=1 color="#000000">Volume:</font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("RBCAliquotVol1", "", new { @id = "RBCAliquotVol1", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.RBCAliquotVol1, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("RBCAliquotVol2", "", new { @id = "RBCAliquotVol2", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.RBCAliquotVol2, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle">
+                                    <font color="#000000">
+                                        @*@if (ViewBag.EDTAProcessed == 1)
+                                        {
+                                            @Html.TextBox("RBCAliquotVol3", "", new { @id = "RBCAliquotVol3", @class = "form-control volBox" })
+                                            @Html.ValidationMessageFor(model => Model.RBCAliquotVol3, "", new { @class = "text-danger" })
+                                        }*@
+                                    </font>
+                                </td> <!-- column 17-->
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 40px; padding-right: 40px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="20" @*colspan="3*@ rowspan=4 align="center" valign=middle bgcolor="#D7E5F7">
+                                    <b>
+                                        <font color="#000000">Buccal</font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=bottom>
+                                    <b>
+                                        <font color="#000000">Freezer</font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=bottom>
+                                    <b>
+                                        <font color="#000000">Box</font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=bottom>
+                                    <b>
+                                        <font color="#000000">Position</font>
+                                    </b>
+                                </td>
+                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" rowspan=2 align="center" valign=bottom>
+                                    <b>
+                                        <font color="#000000">Date &amp; Time Samples Processed in Lab</font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="2"*@ rowspan="2" align="center" valign=bottom>
+                                    @* 3rd colspan change*@
+                                    <b>
+                                        <font color="#000000">Freezing Time</font>
+                                    </b>
+                                </td>
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+
+                                <!-- N.B. This padding here makes most FRDB columns wide enough to fit all four boxes in a row -->
+                                <td style="padding: 5px; padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" @*colspan="3"*@ rowspan=4 align="center" valign=middle bgcolor="#D7E5F7">
+                                    <!-- column 11-->@* second colspan change*@
+                                    <b>
+                                        <font color="#000000">Buccal Barcode</font>
+                                    </b>
+                                </td>
+                                <td style="padding: 5px; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign="middle">
+                                    <font color="#000000">
+                                        @if (ViewBag.BuccalProcessed == 1)
+                                        {
+                                            @Html.TextBox("BuccalBarcode", "", new { @id = "BuccalBarcode", @class = "form-control barCodeBox", @onkeydown = "return (event.keyCode!=13);", @onclick = "clearBarcodeField('BuccalBarcode');" })
+                                            @Html.ValidationMessageFor(model => Model.BuccalBarcode, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td rowspan=2 align="center" valign=bottom><b><font color="#000000"></font></b></td>
+                                <td rowspan=2 align="center" valign=bottom><b><font color="#000000"></font></b></td>  <!-- COLUMN 15 -->
+                                @*<td rowspan=2 align="center" valign=bottom><b><font color="#000000">Jeez16</font></b></td>*@ <!-- column 16 -->
+                            </tr>
+                            <tr>
+                                <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+
+                            </tr>
+                            <tr>
+                                <td style="border-right: 1px solid #000000" height="20" align="center" valign=bottom>
+                                    <font color="#000000">
+                                        @if (ViewBag.BuccalProcessed == 1)
+                                        {
+                                            @Html.TextBox("BuccalFreezer", "", new { @id = "BuccalFreezer", @class = "rdBox", placeholder = "(F)" })
+                                            @Html.ValidationMessageFor(model => Model.BuccalFreezer, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="border-right: 1px solid #000000" height="20" align="center" valign="bottom">
+                                    <font color="#000000">
+                                        @if (ViewBag.BuccalProcessed == 1)
+                                        {
+                                            @Html.TextBox("BuccalBox", "", new { @id = "BuccalBox", @class = "boxBox", placeholder = "(B)" })
+                                            @Html.ValidationMessageFor(model => Model.BuccalBox, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="border-right: 1px solid #000000" height="20" align="center" valign="bottom">
+                                    <font color="#000000">
+                                        @if (ViewBag.BuccalProcessed == 1)
+                                        {
+                                            @Html.TextBox("BuccalPosition", "", new { @class = "form-control sampleNumBox" })
+                                            @Html.ValidationMessageFor(model => Model.BuccalPosition, "", new { @class = "text-danger" })
+                                        }
+                                    </font>
+                                </td>
+                                <td style="padding-left: 5px; padding-right: 5px; border-right: 1px solid #000000" height="20" align="center" valign="bottom">
+                                    <font color="#000000">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="input-group">
+                                                    @Html.TextBox("DateProcessed", "", new { @id = "DateProcessed", @class = "form-control dateControl form_date" })
+                                                    @Html.ValidationMessageFor(model => Model.DateProcessed, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </font>
+                                </td>
+                                <td style="border-right: 1px solid #000000" height="20" align="center" valign="bottom">
+                                    <font color="#000000">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    @Html.TextBox("TimeProcessed", "", new { @id = "TimeProcessed", @class = "form-control timeControl form_time" })
+                                                    @Html.ValidationMessageFor(model => Model.TimeProcessed, "", new { @class = "text-danger" })
+                                                </div>
+                                             </div>
+                                        </div>
+                                    </font>
+                                </td>
+                                <td style="padding-left: 5px; padding-right: 5px;" @*colspan="2"*@ align="center" valign=bottom>
+                                    @* 3rd colspan change*@
+                                    <font color="#000000">
+                                        <br>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="input-group">
+                                                    @Html.TextBox("TimeFrozen", "", new { @id = "TimeFrozen", @class = "form-control timeControl form_time" })
+                                                    @Html.ValidationMessageFor(model => Model.TimeFrozen, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </font>
+                                </td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom></td>
+                                <td align="left" valign=bottom></td>
+                                <td rowspan=2 align="left" valign=bottom></td> <!-- column 11-->
+                                <td rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td rowspan=2 align="left" valign=bottom></td>
+                                <td rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td> <!-- column 15-->
+                            </tr>
+                            <tr>
+                                <td style="border-bottom: 1pt solid #000000; border-right: 1px solid #000000" height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-bottom: 1pt solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-bottom: 1pt solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-bottom: 1pt solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-bottom: 1pt solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td style="border-bottom: 1pt solid #000000;" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                @*<td style="border-bottom: 1pt solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                                <td colspan="5" align="left" valign=bottom>
+                                    @* 3rd colspan change*@
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Save Sample Processing" class="btn btn-default" />
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td align="left" valign=bottom></td>
+                                <td align="left" valign=bottom></td>
+                                <td align="left" valign=bottom><font color="#000000"><br> </font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br> </font></td>
+                                <td align="left" valign=bottom></td>
+                                <td align="left" valign=bottom></td>
+                                <td align="left" valign=bottom></td>
+                            </tr>
+                            <tr>
+                                <td height="20" align="center" valign=bottom><b><font color="#000000"></font></b></td>
+                                <td rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td rowspan=2 align="left" valign=bottom><b><font color="#000000"></font></b></td>
+                                <td rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td @*colspan=3*@ rowspan=2 align="center" valign=bottom>
+                                    <!-- column 11 - 13 --> @* 3rd colspan change*@
+                                </td>
+                                <td rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td rowspan=2 align="left" valign=bottom><b><font color="#000000"></font></b></td>
+                                <td rowspan=2 align="left" valign=bottom></td> <!-- column 16-->
+                            </tr>
+                            <tr>
+                                <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td> <!-- column 10 -->
+                            </tr>
+                            <tr>
+                                <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td> <!-- column 11 -->
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                                <td align="left" valign=bottom><font color="#000000"><br></font></td> <!-- column 15 -->
+                            </tr>
+                            <tr>
+                                <td align="left" valign=bottom><br>@*<input type="submit" value="Create" class="btn btn-default" />*@</td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td> <!-- COLUMN 11 -->
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="right" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td> <!-- COLUMN 16 -->
+                            </tr>
+                            <tr>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td> <!-- COLUMN 11 -->
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="right" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td> <!-- COLUMN 16 -->
+                            </tr>
+                            <tr>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td> <!-- COLUMN 11 -->
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td>
+                                <td align="right" valign=bottom><br></td>
+                                <td align="left" valign=bottom><br></td> <!-- COLUMN 16 -->
+                            </tr>
+                        </table>
+                    </div> @* END OF SampleProcessing DIV*@
+                    @*<div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>*@
+                }
+            }
+            @* end of class form horizontal *@
+        </div>@* End of Fom *@
+    </div>@* end of div container *@
+
+    <div>
+        @*@Html.ActionLink("Back to List", "Index")*@
+        @Html.ActionLink("Back to Form, Person & Study", "Index", "StudyPersonSample")
+    </div>
+</div>
+@Styles.Render("~/Content/labform")
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('.form_date').datetimepicker({
+                format: 'DD/MM/YYYY',
+                showClose: true,
+                showClear: true,
+                toolbarPlacement: 'top'
+            });
+        });
+        $(function () {
+            $('.form_time').datetimepicker({
+                format: 'HH:mm',
+                showClose: true,
+                showClear: true,
+                toolbarPlacement: 'top'
+            });
+        });
+        $(':input').keypress(function () {
+            $(this).next(':input').focus();
+        });
+    </script>
+
+}
+

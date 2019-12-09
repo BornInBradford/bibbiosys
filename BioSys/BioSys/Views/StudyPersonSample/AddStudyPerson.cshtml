@@ -1,0 +1,129 @@
+﻿@model BioSys.Models.AddStudyPerson
+
+@{
+    ViewBag.Title = "Add Study Person";
+}
+
+<<h2><span class="customViewTitle">Add Study Person</span></h2>
+
+<h3>
+    <span class="success_message">@ViewBag.Message</span>
+</h3>
+@*@using (Html.BeginForm("AddStudyPerson", "StudyPersonSample", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.Hidden("StudyID")
+        <h4></h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.PSCID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("PSCID", "", new { @id = "PSCID", @class = "form-control", maxlength = "14", required = "required" })
+                @Html.ValidationMessageFor(model => Model.PSCID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.StudyName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("Study Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.TextBox("StudyName", "", new { @id = "StudyName", @class = "form-control" })*@
+                @Html.DropDownList("StudyID", null, "--- Select ---", new { @id = "ddlStudyName", onchange = "getFormList(this.value)", @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => Model.StudyName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.StudyID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("StudyID", "", new { @id = "StudyID", @class = "form-control" })
+                </div>
+            </div>*@
+        <div class="form-group">
+            @Html.Label("Participant Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.TextBox("ParticipantType", "", new { @id = "ParticipantType", @class = "form-control" })*@
+                @Html.DropDownList("ParticipantType", null, "--- Select ---", new { @id = "ddlParticipantType", onchange = "getGender(this.value)", @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => Model.ParticipantType, "", new { @class = "text-danger" })
+                @*@Html.DropDownListFor(model => model.ParticipantType, new List<SelectListItem>(), "--- Select ---", new { @id = "ddlParticipantType" })*@
+            </div>
+        </div>
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("Date of Birth", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1">
+                        <div class="input-group">
+                            @Html.TextBox("DateOfBirth", "", new { @id = "DateOfBirth", @class = "standardDateControl form_date", required = "required" })
+                            @Html.ValidationMessageFor(model => Model.DateOfBirth, "", new { @class = "text-danger" })
+                            <label class="input-group-addon btn buttonFor" for="DateOfBirth">
+                                <span class="glyphicon glyphicon-calendar  " />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.TextBox("Sex", "", new { @id = "Sex", @class = "form-control" })*@
+                @*@Html.EnumDropDownListFor(model => model.Sex, new { @id="Sex", @class = "form-control"})*@
+                @Html.DropDownListFor(model => model.Sex, null, "-- Select ---", new { @id = "Sex", @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => Model.Sex, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.StudyPersonID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("Study Person ID", "", new { @id = "StudyPersonID", @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-5 col-md-10">
+                @*<input type="submit" value="Add Study Person" class="btn btn-success" />*@
+                <a class="btn btn-success" onclick="addStudyPerson()">Add</a>
+            </div>
+            @*<div class="col-md-offset-5 col-md-10">
+                    <br/>
+                    <span class="success_message">@ViewBag.Message</span>
+                </div>*@
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Home Page", "Index", "Home")
+    <br />
+    <br />
+    @Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer })
+    @*<div class="col-md-2">
+            <a class="btn btn-success" onclick="returnToIndex()">Back</a>
+        </div>*@
+</div>
+@section Scripts{
+    <script type="text/javascript">
+
+        var today = new Date().getDate();
+
+        $(function () {
+            $('.form_date').datetimepicker({
+                format: 'DD/MM/YYYY',
+                showClose: true,
+                showClear: true,
+                toolbarPlacement: 'top',
+                maxDate: new Date(new Date().setDate(today + 1))
+            });
+        });
+        $(function () {
+            $('.form_time').datetimepicker({
+                format: 'HH:mm',
+                showClose: true,
+                showClear: true,
+                toolbarPlacement: 'top'
+            });
+        });
+    </script>
+}

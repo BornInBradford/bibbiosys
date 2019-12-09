@@ -1,0 +1,129 @@
+﻿@model BioSys.Models.StudyPerson
+
+@{
+    ViewBag.Title = "Edit Study Person";
+}
+
+    <h2><span class="customViewTitle">Edit Study Person</span></h2>
+    <br />
+    <span class="success_message">@ViewBag.Message</span>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4></h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.PSCID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PSCID, "", new { htmlAttributes = new { @id = "PSCID", @class = "form-control", required = "required" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.StudyName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                @Html.LabelFor(model => model.StudyName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.TextBox("StudyName", "", new { @id = "StudyName", @class = "form-control" })*@
+                    @*@Html.EditorFor(model =>model.StudyName, null, "--- Select ---", new { @id = "ddlStudyName", onchange = "getFormList(this.value)", @class = "form-control" })*@
+                    @*@Html.DropDownList("StudyName", null, "--- Select ---", new { @id = "ddlStudyName", onchange = "getFormList(this.value)", @class = "form-control" })*@
+                    @*@Html.DropDownListFor(model => model.StudyID, null, "--- Select ---", new { @id = "ddlStudyName", onchange = "getGender(this.value)", @class = "form-control" })*@
+                    @*@Html.DropDownListFor(model => model.StudyID, null, "--- Select ---", new { @id = "ddlStudyName", @class = "form-control" })*@
+                    @Html.DropDownList("StudyID", null, "--- Select ---", new { @id = "ddlStudyName", @class = "form-control", required = "required" })
+            </div>
+        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.StudyID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("StudyID", "", new { @id = "StudyID", @class = "form-control" })
+                </div>
+            </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.ParticipantType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.TextBox("ParticipantType", "", new { @id = "ParticipantType", @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.ParticipantType, null, "--- Select ---", new { @id = "ddlParticipantType", onchange = "getGender(this.value)", @class = "form-control" })
+                @*@Html.DropDownListFor(model => model.ParticipantType, new List<SelectListItem>(), "--- Select ---", new { @id = "ddlParticipantType" })*@
+            </div>
+        </div>
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1">
+                        <div class="input-group">
+                            @*@Html.TextBoxFor(model => model.DateOfBirth, "", new { @id = "DateOfBirth", @class = " form_date" })*@
+                            @*@Html.TextBox("DateOfBirth", "", new { @id = "DateOfBirth", @class = "standardDateControl form_date" })*@
+                            @* @Html.EditorFor(model => model.DateOfBirth, "", new { @id = "DateOfBirth", @class = "standardDateControl form_date" })*@
+                            @Html.EditorFor(model => model.DateOfBirth, "", new { htmlAttributes = new { @id = "DateOfBirth", @class = "standardDateControl " } })  @* N.B. form_date class removed as replaces display of value  with placehoder*@
+                            <label class="input-group-addon btn buttonFor" for="DateOfBirth">
+                                <span class="glyphicon glyphicon-calendar  " />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.TextBox("Sex", "", new { @id = "Sex", @class = "form-control" })*@
+                @*@Html.EnumDropDownListFor(model => model.Sex, new { @id = "Sex", @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.Sex, null, "-- Select ---", new { @id = "ddlSex", @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.StudyPersonID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StudyPersonID, "", new { htmlAttributes = new { @id = "StudyPersonID", @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+
+            <div class="col-md-offset-5 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+            @*<div class="col-md-offset-5 col-md-10">
+                    <br />
+                    <span class="success_message">@ViewBag.Message</span>
+                </div>*@
+        </div>
+    </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to Home Page", "Index", "Home")
+    </div>
+    <div>
+        @Html.ActionLink("Back to Form, Person & Study", "Index", "StudyPersonSample")
+    </div>
+    @section Scripts{
+        <script type="text/javascript">
+
+            var today = new Date().getDate();
+
+            $(function () {
+                $('.form_date').datetimepicker({
+                    format: 'DD/MM/YYYY',
+                    showClose: true,
+                    showClear: true,
+                    toolbarPlacement: 'top',
+                    maxDate: new Date(new Date().setDate(today + 1))
+                });
+            });
+            $(function () {
+                $('.form_time').datetimepicker({
+                    format: 'HH:mm',
+                    showClose: true,
+                    showClear: true,
+                    toolbarPlacement: 'top'
+                });
+            });
+        </script>
+    }
+

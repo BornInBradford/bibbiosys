@@ -1,0 +1,600 @@
+﻿@model BioSys.Models.AddStudySample
+
+@{
+    ViewBag.Title = "Add Blood Sample";
+}
+
+<h2>Add Blood Sample</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4></h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div>
+        <table cellspacing="0" border="0">
+            <colgroup width="104"></colgroup>
+            <colgroup width="103"></colgroup>
+            <colgroup width="102"></colgroup>
+            <colgroup width="99"></colgroup>
+            <colgroup width="102"></colgroup>
+            <colgroup width="101"></colgroup>
+            <colgroup width="64"></colgroup>
+            <colgroup width="94"></colgroup>
+            <colgroup width="64"></colgroup>
+            <colgroup width="17"></colgroup>
+            <colgroup span="2" width="99"></colgroup>
+            <colgroup span="3" width="105"></colgroup>
+            <tr>
+                <td height="20" align="left" valign=bottom><b><font color="#000000">PSCID:</font></b>
+                    <span>@Html.TextBox("PSCID", "", new { @id = "PSCID", @class = "form-control", @readonly = "readonly", maxlength = "10" })</span>
+                </td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="right" valign=bottom><br><b>Collected?</b></td>                
+                <td align="left" colspan="2" valign=bottom><font color="#000000"><br>
+                   <span style="padding-left: 10px;">Yes:</span><span>@Html.RadioButtonFor(model => model.BloodCollected, "Yes")</span> 
+                   <span style="padding-left: 10px;">No:</span> <span>@Html.RadioButtonFor(model => model.BloodCollected, "No")</span></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+            </tr>
+            <tr>
+                <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+            </tr>
+            <tr>
+                <td height="20" align="left" valign=bottom><b><font color="#000000">Study:</font></b>
+                    <span>@Html.TextBox("StudyID", "", new { @id = "StudyID", @class = "form-control", @readonly = "readonly", maxlength = "10" })</span>
+                </td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                @*<td align="left" valign=bottom><font color="#000000"><br></font></td>*@
+                <td colspan="2" align="right" valign=bottom><b><font color="#000000"><span style="padding-right: 10px;">Collected Date: </span></font></b></td>
+                <td align="left" valign=bottom><font color="#000000"><br>@Html.TextBox("DateOfCollection", "", new { @id = "DateOfCollection", @class = "form-control" })</font></td>
+                <td align="center" valign=bottom><b><font color="#000000">at</font></b></td>
+                <td align="left" valign=bottom><font color="#000000"><br>@Html.TextBox("TimeOfCollection", "", new { @id = "TimeOfCollection", @class = "form-control" })</font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="right" valign=bottom>
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </td> 
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                <td align="left" valign=bottom><font color="#000000"><br></font></td>
+            </tr>
+            <tr>
+                <td align="left" valign=bottom><br></td>
+                <td align="left" valign=bottom><br></td>
+                <td align="left" valign=bottom><br></td>
+                <td align="left" valign=bottom><br></td>
+                <td align="left" valign=bottom><br></td>
+                <td align="left" valign=bottom><br></td>
+                <td align="left" valign=bottom><br></td>
+                <td align="left" valign=bottom><br></td>
+                <td align="left" valign=bottom><br></td>
+                <td align="left" valign=bottom><br></td>
+                <td align="left" valign=bottom><br></td>
+                <td align="left" valign=bottom><br></td>
+                <td align="left" valign=bottom><br></td>
+                <td align="left" valign=bottom><br></td>
+                <td align="left" valign=bottom><br></td>
+            </tr>
+        </table>
+        </div>
+        <div>
+            <table cellspacing="0" border="0">
+                <colgroup width="104"></colgroup>
+                <colgroup width="103"></colgroup>
+                <colgroup width="102"></colgroup>
+                <colgroup width="99"></colgroup>
+                <colgroup width="102"></colgroup>
+                <colgroup width="101"></colgroup>
+                <colgroup width="64"></colgroup>
+                <colgroup width="94"></colgroup>
+                <colgroup width="64"></colgroup>
+                <colgroup width="17"></colgroup>
+                <colgroup span="2" width="99"></colgroup>
+                <colgroup span="3" width="105"></colgroup>
+                <tr>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                </tr>
+                <tr>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 height="20" align="left" valign=bottom><b><font color="#000000">Barcode Label</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan=2 align="left" valign=bottom><b><font color="#000000">Lab Barcode</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=top bgcolor="#FFFF99"><b><font color="#000000">Gel</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=top bgcolor="#CCCCFF"><b><font color="#000000">EDTA</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=top bgcolor="#E6FFCD"><b><font color="#000000">Lit Hep</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=top bgcolor="#E7E6E6"><b><font color="#000000">Oxalate</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=top bgcolor="#D7E5F7"><b><font color="#000000">Buccal</font></b></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom><b><font color="#000000">Tube:</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom><b><font color="#000000">Sample Type</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom><b><font color="#000000">Aliquot 1</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom><b><font color="#000000">Aliquot 2</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom><b><font color="#000000">Aliquot 3</font></b></td>
+                </tr>
+                <tr>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 rowspan=2 height="40" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top bgcolor="#CCCCFF"><b><font color="#000000">EDTA</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top><b><font color="#000000">WB</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td height="23" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=top><b><font size=1 color="#000000">F/R/D/B</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top><b><font size=1 color="#000000">Position:</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="20" align="center" valign=bottom><b><font color="#000000">Tube:</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><b><font color="#000000">Sample Type:</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom><b><font color="#000000">Aliquot 1</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom><b><font color="#000000">Aliquot 2</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom><b><font color="#000000">Aliquot 3</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom><b><font color="#000000">Aliquot 4</font></b></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><b><font color="#000000">Consent</font></b></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=top><font size=1 color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top><b><font size=1 color="#000000">Volume</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 height="93" align="center" valign=top bgcolor="#FFFF99"><b><font color="#000000">Gel</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top><b><font color="#000000">Serum</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign="middle"><font color="#000000"><br>@Html.TextBox("GelSerumAliquot_1", "", new { @id = "GelSerumAliquot_1", @class = "form-control" })</font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=middle><font color="#000000"><br>@Html.TextBox("GelSerumAliquot_2", "", new { @id = "GelSerumAliquot_1", @class = "form-control" })</font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=middle><font color="#000000"><br>@Html.TextBox("GelSerumAliquot_3", "", new { @id = "GelSerumAliquot_1", @class = "form-control" })</font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=middle><font color="#000000"><br>@Html.TextBox("GelSerumAliquot_4", "", new { @id = "GelSerumAliquot_1", @class = "form-control" })</font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><b><font color="#000000">Genetics:</font></b></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top><b><font color="#000000">Plasma</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><b><font color="#000000">Non-genetic:</font></b></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="center" valign=top><b><font size=1 color="#000000">F/R/D/B</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top><b><font size=1 color="#000000">Position:</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=top><b><font size=1 color="#000000">F/R/D/B</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top><b><font size=1 color="#000000">Position:</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="20" align="center" valign=top><font size=1 color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top><b><font size=1 color="#000000">Volume</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=top><font size=1 color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top><b><font size=1 color="#000000">Volume</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 height="107" align="center" valign=top bgcolor="#E7E6E6"><b><font color="#000000">Oxalate</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top><b><font color="#000000">Plasma</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign="middle"><font color="#000000"><br>@Html.TextBox("OxPlasmaAliquot_1", "", new { @id = "OxPlasmaAliquot_1", @class = "form-control" })</font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=middle><font color="#000000"><br>@Html.TextBox("OxPlasmaAliquot_2", "", new { @id = "OxPlasmaAliquot_2", @class = "form-control" })</font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=middle><font color="#000000"><br>@Html.TextBox("OxPlasmaAliquot_3", "", new { @id = "OxPlasmaAliquot_3", @class = "form-control" })</font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=middle><font color="#000000"><br>@Html.TextBox("OxPlasmaAliquot_4", "", new { @id = "OxPlasmaAliquot_4", @class = "form-control" })</font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top><b><font color="#000000">Buffy</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="20" align="center" valign=top><b><font size=1 color="#000000">F/R/D/B</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top><b><font size=1 color="#000000">Position:</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=top><b><font size=1 color="#000000">F/R/D/B</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top><b><font size=1 color="#000000">Position:</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="20" align="center" valign=top><font size=1 color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top><b><font size=1 color="#000000">Volume</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=top><font size=1 color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top><b><font size=1 color="#000000">Volume</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 height="120" align="center" valign=top bgcolor="#E6FFCD"><b><font color="#000000">Lit Hep</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top><b><font color="#000000">Plasma</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=top><b><font color="#000000">RBC</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="20" align="center" valign=top><b><font size=1 color="#000000">F/R/D/B</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top><b><font size=1 color="#000000">Position:</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=top><b><font size=1 color="#000000">F/R/D/B</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top><b><font size=1 color="#000000">Position:</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="20" align="center" valign=top><font size=1 color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top><b><font size=1 color="#000000">Volume</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=top><font size=1 color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=top><b><font size=1 color="#000000">Volume</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=4 align="center" valign=middle bgcolor="#D7E5F7"><b><font color="#000000">Buccal</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=bottom><b><font color="#000000">Freezer</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=bottom><b><font color="#000000">Box</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=bottom><b><font color="#000000">Positon</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="center" valign=bottom><b><font color="#000000">Lab Barcode</font></b></td>
+                </tr>
+                <tr>
+                    <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 rowspan=2 align="center" valign=bottom><b><font color="#000000">Date and time <br>processed in labs</font></b></td>
+                    <td rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" rowspan=2 align="left" valign=bottom><b><font color="#000000">Freezing Time</font></b></td>
+                    <td rowspan=2 align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="left" valign=bottom><font color="#000000"><br></font></td>
+                </tr>
+                <tr>
+                    <td align="left" valign=bottom><br><input type="submit" value="Create" class="btn btn-default" /></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="right" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                </tr>
+                <tr>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="right" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                </tr>
+                <tr>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                    <td align="right" valign=bottom><br></td>
+                    <td align="left" valign=bottom><br></td>
+                </tr>
+            </table>
+        </div>
+        @*<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>*@
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

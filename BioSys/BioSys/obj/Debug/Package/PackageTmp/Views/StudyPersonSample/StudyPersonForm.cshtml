@@ -1,0 +1,79 @@
+﻿@model BioSys.Models.StudyPersonSample
+
+@{
+    ViewBag.Title = "StudyPersonForm";
+}
+
+<h2>StudyPersonForm</h2>
+
+<div>
+    <h4>CRUDStudyPerson</h4>
+    <hr />
+</div>
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudyID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PSCID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParticipantType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudyPersonID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEntryFormName)
+            </th>
+            <th>
+                placeholder for form list
+            </th>
+        </tr>
+        @*@foreach (var item in Model)
+            {*@
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.StudyID)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.StudyName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.PSCID)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ParticipantType)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Sex)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.StudyPersonID)
+            </td>
+            <td>
+                @Html.DropDownListFor(model => model.FormName, new List<SelectListItem>(), "--- Select ---", new { @id = "ddlDEFormName" })
+            </td>
+        </tr>
+        @*}*@
+    </table>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

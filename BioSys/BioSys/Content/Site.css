@@ -1,0 +1,126 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.layouttable td {
+        padding: 10px;
+        vertical-align: central;
+ 
+     }
+
+.homeContentAuthenticated{
+        padding: 10px;
+    margin-bottom: 30px;
+    font-size: 120px;
+    font-weight: 200;
+    line-height: 2.1428571435;
+    color: inherit;
+    background-color: #fff;
+    background-size: cover;
+    height: 100%;
+}
+
+.homeContentAuthenticated h1 {
+  line-height: 1;
+  color: inherit;
+}
+
+.homeContentAuthenticated p {
+  line-height: 1.4;
+}
+
+.homeContentAuthenticated a {
+    color: #000000;  
+}
+
+.homeContentAuthenticated table tr td {
+    border: none;
+    color: inherit;
+    padding: 10px;
+    margin-bottom: 30px;
+    font-size: 120px;
+    font-weight: 200;
+    line-height: 2.1428571435;
+    color: inherit;
+    background-color: #fff;
+    background-size: cover;
+    height: 100%;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.success_message{
+     font-weight: bold;
+     font-size: 18px;
+     color: #ff0000; /*#0070BC;*/
+}
+
+.control-label
+{
+    font-weight: bold;
+    font-size: 18px;
+    color: #0070BC;
+}
+
+
+.standardDateControl {
+  display: block;
+  width: 200px;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.standardIDControl {
+  display: block;
+  width: 100px;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+/* Added by ACN Version 0.1 release - 28.08.2018 */
+.customViewTitle {
+    font-size: 30px;   /* this is the equivalent of h2 */
+    font-weight: bold;
+    color:#0070BC;
+}

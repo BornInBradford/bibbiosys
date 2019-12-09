@@ -1,0 +1,146 @@
+﻿
+.collectedTable {
+
+    border-top: 1px solid #66afe9; 
+    border-bottom: 1px solid #23d315; 
+    border-left: 1px solid #23d315; 
+    border-right: 1px solid #23d315;
+
+}    
+
+.customTD {
+    border-top: 1px solid #808080; 
+    border-bottom: 1px solid #808080; 
+    border-left: 1px solid #808080; 
+    border-right: 1px solid #808080;
+    padding: 5px; 
+    text-align: center; 
+    vertical-align: middle;
+}
+
+.customViewTitle {
+    font-size: 30px;   /* this is the equivalent of h2 */
+    font-weight: bold;
+    color:#0070BC;
+}
+
+.customTitleLineLabel{
+    font-size: 18px;
+    font-weight: bold;
+    vertical-align: bottom;
+    color:#0070BC;
+}
+ .textBoxAsLabel{
+   border: none;
+   background-color: #fff;
+   background: transparent;
+   font-size: 18px;
+   font-weight: bold;
+   color:#0070BC;
+   vertical-align: bottom;
+   
+}
+
+.sampleNumBox:-moz-placeholder {
+  color: #999999;
+}
+
+.sampleNumBox::-moz-placeholder {
+  color: #999999;
+}
+
+.sampleNumBox:-ms-input-placeholder {
+  color: #999999;
+}
+
+.sampleNumBox::-webkit-input-placeholder {
+  color: #999999;
+}
+
+.sampleNumBox {
+   width: 60px;
+   height: 20px;
+
+}
+
+.fbBox {
+    max-width: 30px;
+    height: 20px;
+}
+
+.rdBox {
+    max-width: 20px;
+    height: 20px;
+}
+
+.boxBox {
+    min-width: 40px;
+    max-width: 40px;
+    height: 20px;
+}
+
+.volBox {
+
+   width: 60px;
+   height: 20px;
+}
+
+.barCodeBox {
+    width: 80px;
+    height: 20px;
+}
+
+.dateControl{
+    width: 100px;
+    height: 30px;
+}
+
+.timeControl{
+    width: 60px;
+    height: 30px;
+}
+
+.enumControl:-moz-placeholder {
+  color: #999999;
+}
+
+.enumControl:-moz-placeholder {
+  color: #999999;
+}
+
+.form-enumControl:-ms-input-placeholder {
+  color: #999999;
+}
+
+.enumControl::-webkit-input-placeholder  {
+  color: #999999;
+}
+
+.enumControl {
+     display: block;
+      width:100px;
+      height: 30px;
+      font-size: 14px;
+      line-height: 1.428571429;
+      color: #555555;
+      vertical-align: middle;
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+             box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+             transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.enumControl:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.buttonFor {
+    height: 16px;
+    width: 16px;
+}
